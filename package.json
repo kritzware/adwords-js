@@ -1,0 +1,27 @@
+{
+  "name": "adwords-js",
+  "version": "0.0.1",
+  "description": "Node.js unofficial library for Google AdWords API",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kritzware/adwords-js.git"
+  },
+  "author": "kritzware <suspiciouspotato@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kritzware/adwords-js/issues"
+  },
+  "homepage": "https://github.com/kritzware/adwords-js#readme",
+  "devDependencies": {
+    "adwords-auth": "^0.0.10",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  },
+  "dependencies": {
+    "csv-parse": "^1.2.0"
+  }
+}
