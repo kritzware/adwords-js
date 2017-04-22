@@ -16,23 +16,46 @@ const adwords = new Adwords({
   access_token        : 'your_access_token'
 })
 
-const awql_query = 'SELECT + Id, Criteria, Clicks, Cost, Impressions \
-                    FROM + KEYWORDS_PERFORMANCE_REPORT + DURING + LAST_7_DAYS'
+/* Construt AWQL query */
+const awql = adwords.build({
+  report: 'KEYWORDS_PERFORMANCE_REPORT',
+  fields: [
+    "Id",
+    "Criteria",
+    "Clicks",
+    "Cost",
+    "Impressions"
+  ],
+  date: {
+    from : '2017-04-18',
+    to   : '2017-04-22'
+    // range: 'LAST_7_DAYS'
+  }
+})
+/*
+  SELECT+Id,Criteria,Clicks,Cost,Impressions+FROM+KEYWORDS_PERFORMANCE_REPORT+DURING+20170418,20170422
+*/
 
-adwords.request(awql_query)
-.then(keywords => {
+adwords.query(awql)
+.then(res => {
   /*
-    Keyword ID, Keyword,  Clicks, Cost, Impressions
-    41941982,   keyword2, 0,      0,    0
-    41943412,   keyword3, 0,      0,    0
-    41941972,   keyword1, 0,      0,    0
-    590120091,  keyword6, 0,      0,    0
-    41943402,   keyword5, 0,      0,    0
-    295056043,  keyword4, 0,      0,    0
+  [ 
+    { 'Keyword ID': 295056043,
+      Keyword: 'keyword1',
+      Clicks: 0,
+      Cost: 0,
+      Impressions: 0
+    },
+    { 'Keyword ID': 41943402,
+      Keyword: 'keyword2',
+      Clicks: 0,
+      Cost: 0,
+      Impressions: 0
+    } 
+  ]
   */
 })
 .catch(err => {
-  console.log(err)
   // e.g. "AuthenticationError.OAUTH_TOKEN_INVALID"
 })
 ```
